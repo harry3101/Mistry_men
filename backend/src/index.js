@@ -10,8 +10,8 @@ async function start() {
 
   const app = createApp();
 
-  app.listen(env.port, () => {
-    console.log(`Mistry backend running on http://localhost:${env.port}`);
+  app.listen(env.port, "0.0.0.0", () => {
+    console.log(`Mistry backend running on port ${env.port}`);
     console.log(`CORS allowed for: ${env.frontendUrl}`);
   });
 }

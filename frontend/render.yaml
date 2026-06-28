@@ -1,0 +1,18 @@
+# Frontend-only Render service
+# Use this when deploying the web app separately (manual import or copy into root render.yaml)
+
+services:
+  - type: web
+    name: mistry-frontend
+    runtime: node
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: VITE_API_URL
+        sync: false

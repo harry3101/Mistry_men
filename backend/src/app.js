@@ -14,9 +14,21 @@ export function createApp() {
   const app = express();
 
   app.use(helmet());
+  const allowedOrigins = [
+    env.frontendUrl,
+    "http://localhost:5173",
+    "http://localhost:8080",
+  ].filter(Boolean);
+
   app.use(
     cors({
-      origin: [env.frontendUrl, "http://localhost:5173", "http://localhost:8080"],
+      origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+          return;
+        }
+        callback(null, false);
+      },
       credentials: true,
     }),
   );
