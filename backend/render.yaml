@@ -16,7 +16,7 @@ services:
       - key: NODE_VERSION
         value: 22.16.0
       - key: FRONTEND_URL
-        sync: false
+        value: https://mistry-men-1.onrender.com
       - key: MONGODB_URI
         sync: false
       - key: LOVABLE_API_KEY

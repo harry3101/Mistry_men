@@ -17,10 +17,7 @@ services:
       - key: NODE_VERSION
         value: 22.16.0
       - key: FRONTEND_URL
-        fromService:
-          type: web
-          name: mistry-frontend
-          envVarKey: RENDER_EXTERNAL_URL
+        value: https://mistry-men-1.onrender.com
       - key: MONGODB_URI
         sync: false
       - key: LOVABLE_API_KEY
@@ -46,15 +43,16 @@ services:
     runtime: node
     rootDir: frontend
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: NODE_VERSION
         value: 22.16.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: NITRO_PRESET
+        value: node-server
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: mistry-backend
-          envVarKey: RENDER_EXTERNAL_URL
+        value: https://mistry-men.onrender.com
